@@ -312,9 +312,9 @@ func (co *Conn) WriteMsg(m *Msg) (err error) {
 
 // Write implements the net.Conn Write method.
 func (co *Conn) Write(p []byte) (int, error) {
-	if len(p) > MaxMsgSize {
-		return 0, &Error{err: "message too large"}
-	}
+	fmt.Println("message length")
+	fmt.Println(len(p))
+	fmt.Println("message length end")
 
 	if _, ok := co.Conn.(net.PacketConn); ok {
 		return co.Conn.Write(p)
