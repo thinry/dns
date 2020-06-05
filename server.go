@@ -686,9 +686,6 @@ func (w *response) Write(m []byte) (int, error) {
 	case w.udp != nil:
 		return WriteToSessionUDP(w.udp, m, w.udpSession)
 	case w.tcp != nil:
-		if len(m) > MaxMsgSize {
-			return 0, &Error{err: "message too large"}
-		}
 
 		l := make([]byte, 2)
 		binary.BigEndian.PutUint16(l, uint16(len(m)))
